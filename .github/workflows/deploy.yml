@@ -1,0 +1,44 @@
+name: 'deploy'
+author: 'Aman Shankar Sharma'
+description: 'Build, archive and upload archive'
+inputs:
+  version:
+    description: "Build version"
+    required: true
+    default: '1.0.0'
+  build-number:
+    description: "Build number"
+    required: true
+    default: '1'
+outputs:
+  results-file: # id of output
+    description: "Path to results file"
+on:
+  pull_request:
+    branches:
+    - feature/setup-github-actions
+jobs:
+  deploy:
+    name: Deploying to Testflight
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Install gpg
+        run: brew install gnupg
+      - name: Setup provisioning profile
+        env:
+          IOS_KEYS: ${{ secrets.IOS_KEYS }}
+        run: ./.github/secrets/decrypt_secrets.sh
+      - name: Archiving project
+        env:
+          PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+        run: ./.github/scripts/archive_app.sh
+      - name: Exporting .ipa
+        run: ./.github/scripts/export_ipa.sh
+      - name: Publishing app
+        if: success()
+        env:
+          APPLEID_USERNAME: ${{ secrets.APPLEID_USERNAME }}
+          APPLEID_PASSWORD: ${{ secrets.APPLEID_PASSWORD }}
+        run: ./.github/scripts/publish_testflight.sh
