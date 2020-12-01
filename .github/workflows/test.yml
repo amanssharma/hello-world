@@ -1,0 +1,20 @@
+name: 'test'
+author: 'Aman Shankar Sharma'
+description: 'Run tests and generate reports'
+inputs:
+  scheme:
+    description: "Scheme to test"
+    required: false
+    default: 'dev'
+on: workflow_dispatch
+jobs:
+  test:
+    name: Testing Swift Package and iOS app
+    runs-on: macos-11.0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Force XCode 12.2
+        run: sudo xcode-select -switch /Applications/Xcode_12.2.app
+      - name: Testing the app
+        run: exec ./.github/scripts/test_app.sh
