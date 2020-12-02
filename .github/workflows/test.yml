@@ -37,6 +37,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
+      - name: Initialise submodule via script
+        run: ./.github/scripts/init-submodules.sh
       - name: Initialise submodule
         run: git submodule init
       - name: Force XCode 12.2
