@@ -1,5 +1,4 @@
 # This is a basic workflow that is manually triggered
-
 name: Test
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
@@ -43,4 +42,4 @@ jobs:
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme $1 -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty
+        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme {{ github.event.inputs.name }} -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty
