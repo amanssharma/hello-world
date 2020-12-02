@@ -32,16 +32,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
-    runs-on: macos-11.0
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
   test:
     name: Testing
     runs-on: macos-11.0
@@ -49,7 +39,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Initialise submodule
-        run: ./.github/scripts/init-submodules.sh
+        run: git submodule init
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
