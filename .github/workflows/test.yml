@@ -43,4 +43,4 @@ jobs:
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run: ./.github/scripts/test_app.sh -${{ github.event.inputs.scheme }}
+        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme $1 -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty
