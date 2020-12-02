@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
   inputs:
     scheme:
-      description: "Scheme to test"
+      description: 'Scheme to test'
       required: false
       default: 'dev'
     release-version:
-      description: "Build version"
+      description: 'Build version'
       required: false
       default: '1.0.0'
     build-number:
-      description: "Build number"
+      description: 'Build number'
       required: false
       default: '1'
 jobs:
