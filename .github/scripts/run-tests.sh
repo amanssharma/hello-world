@@ -1,4 +1,5 @@
 set -eo pipefail
+
 xcodebuild	clean test\
 			-workspace "Hello World.xcworkspace"\
 			-scheme $1\

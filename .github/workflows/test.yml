@@ -42,10 +42,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Initialise submodule via script
-        run: ./.github/scripts/init-submodules.sh
-      - name: Initialise submodule
-        run: git submodule init
+        run:  ./.github/scripts/init-submodules.sh
       - name: Force XCode 12.2
-        run: sudo xcode-select -switch /Applications/Xcode_12.2.app
+        run:  sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme ${{ github.event.inputs.scheme }} -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty
+        run:  ./.github/scripts/run-tests.sh ${{ github.event.inputs.scheme }}
+#       - name: Gather coverage
+#         run:  ./.github/scripts/slather-out.sh
