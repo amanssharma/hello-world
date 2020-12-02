@@ -1,0 +1,3 @@
+[submodule "nuggets"]
+	path = nuggets
+	url = https://github.com/amanssharma/nuggets.git
