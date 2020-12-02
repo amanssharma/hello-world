@@ -49,7 +49,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Initialise submodule
-        uses: exec ./.github/scripts/init_submodules.sh
+        uses: exec ./.github/scripts/init-submodules.sh
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
