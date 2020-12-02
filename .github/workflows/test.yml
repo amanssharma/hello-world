@@ -42,4 +42,8 @@ jobs:
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme ${{ github.event.inputs.scheme }} -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty
+        run: xcodebuild clean test -workspace "Hello World.xcworkspace" -scheme ${{ github.event.inputs.scheme }} -destination 'platform=iOS Simulator,name=iPhone 12 Pro' -derivedDataPath build/derived-data -enableCodeCoverage YES | xcpretty > build/reports/test-step-output.json
+      - name: Install slather
+        run: gem install slather
+      - name: Run slather
+        run: slather coverage --html --output-directory build/reports/coverage-reports --scheme dev --binary-basename "Hello World" --build-directory "build" --workspace "Hello World.xcworkspace" Hello\ World.xcodeproj
