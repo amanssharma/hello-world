@@ -1,20 +1,22 @@
+
 name: 'test'
 author: 'Aman Shankar Sharma'
 description: 'Run tests and generate reports'
-on: workflow_dispatch
-inputs:
-  scheme:
-    description: "Scheme to test"
-    required: false
-    default: 'dev'
-  release-version:
-    description: "Build version"
-    required: false
-    default: '1.0.0'
-  build-number:
-    description: "Build number"
-    required: false
-    default: '1'
+on:
+  workflow_dispatch:
+  inputs:
+    scheme:
+      description: "Scheme to test"
+      required: false
+      default: 'dev'
+    release-version:
+      description: "Build version"
+      required: false
+      default: '1.0.0'
+    build-number:
+      description: "Build number"
+      required: false
+      default: '1'
 jobs:
   test:
     name: Testing Swift Package and iOS app
