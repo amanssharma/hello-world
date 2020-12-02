@@ -53,4 +53,4 @@ jobs:
       - name: Force XCode 12.2
         run: sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run: ./.github/scripts/test_app.sh -${{ inputs.scheme }}
+        run: ./.github/scripts/test_app.sh -${{ workflow_dispatch.inputs.scheme }}
