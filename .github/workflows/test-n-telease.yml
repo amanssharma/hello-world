@@ -1,0 +1,47 @@
+# This is a basic workflow that is manually triggered
+name: Test
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      scheme:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Scheme to test'
+        # Default value if no value is explicitly provided
+        default: 'dev'
+        # Input has to be provided for the workflow to run
+        required: true
+      release-version:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Release version'
+        # Default value if no value is explicitly provided
+        default: '1.0.0'
+        # Input has to be provided for the workflow to run
+        required: true
+      build-number:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Build number'
+        # Default value if no value is explicitly provided
+        default: '1'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    name: Testing
+    runs-on: macos-11.0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Initialise submodule via script
+        run:  ./.github/scripts/init-submodules.sh
+      - name: Force XCode 12.2
+        run:  sudo xcode-select -switch /Applications/Xcode_12.2.app
+      - name: Testing the app
+        run:  ./.github/scripts/run-tests.sh ${{ github.event.inputs.scheme }}
+#       - name: Gather coverage
+#         run:  ./.github/scripts/slather-out.sh
