@@ -11,7 +11,7 @@ inputs:
     required: true
     default: '1'
 outputs:
-  results-file: # id of output
+  results-file:
     description: "Path to results file"
 on:
   pull_request:

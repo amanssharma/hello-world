@@ -1,4 +1,6 @@
 name: Test Dev
+author: 'Aman Shankar Sharma'
+description: 'Build and test the development branch on PR events'
 
 on:
   pull_request:
