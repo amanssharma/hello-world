@@ -1,6 +1,4 @@
 name: Test Main
-author: 'Aman Shankar Sharma'
-description: 'Build and test the main branch on PR events'
 
 on:
   pull_request:

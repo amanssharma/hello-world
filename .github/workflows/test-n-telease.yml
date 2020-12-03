@@ -1,6 +1,4 @@
 name: Test and Deploy
-author: 'Aman Shankar Sharma'
-description: 'Build, archive and upload archive'
 
 on:
   workflow_dispatch:
