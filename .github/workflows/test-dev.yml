@@ -1,32 +1,21 @@
-# This is a basic workflow that is manually triggered
 name: Test Dev
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
   pull_request:
     types: [assigned, opened, synchronize, edited, reopened]
     branches:
       - dev
   workflow_dispatch:
-    # Inputs the workflow accepts.
     inputs:
       release-version:
-        # Friendly description to be shown in the UI instead of 'name'
         description: 'Release version'
-        # Default value if no value is explicitly provided
         default: '1.0.0'
-        # Input has to be provided for the workflow to run
         required: true
       build-number:
-        # Friendly description to be shown in the UI instead of 'name'
         description: 'Build number'
-        # Default value if no value is explicitly provided
         default: '1'
-        # Input has to be provided for the workflow to run
         required: true
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
     name: Testing
