@@ -11,13 +11,6 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      scheme:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Scheme to test'
-        # Default value if no value is explicitly provided
-        default: 'dev'
-        # Input has to be provided for the workflow to run
-        required: true
       release-version:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Release version'
@@ -46,6 +39,6 @@ jobs:
       - name: Force XCode 12.2
         run:  sudo xcode-select -switch /Applications/Xcode_12.2.app
       - name: Testing the app
-        run:  ./.github/scripts/run-tests.sh ${{ github.event.inputs.scheme }}
+        run:  ./.github/scripts/test-main.sh
 #       - name: Gather coverage
 #         run:  ./.github/scripts/slather-out.sh
